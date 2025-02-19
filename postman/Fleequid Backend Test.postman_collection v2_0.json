@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "cd3df13f-33c2-4a81-a2b9-d48f182aff72",
+		"name": "Fleequid Backend Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "1294534"
+	},
+	"item": [
+		{
+			"name": "Lisa API",
+			"item": [
+				{
+					"name": "[Lisa] Status Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_lisa}}/",
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "[Lisa] Get List homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_lisa}}/homeworks/"
+					},
+					"response": []
+				},
+				{
+					"name": "[Lisa] Get single homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_lisa}}/homeworks/486da5dc-661d-4c9f-ab45-4e1ef06344f5"
+					},
+					"response": []
+				},
+				{
+					"name": "[Lisa] Delete homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{host_lisa}}/homeworks/97c5e015-8a53-4229-8706-80779960bea2"
+					},
+					"response": []
+				},
+				{
+					"name": "[Lisa] Post homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"{{$randomJobTitle}}\",\n    \"description\": \"{{$randomJobDescriptor}}\",\n    \"dueDate\": \"{{$randomDateRecent}}\",\n    \"completed\": {{$randomBoolean}}\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host_lisa}}/homeworks"
+					},
+					"response": []
+				},
+				{
+					"name": "[Lisa] Put homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Cavallo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host_lisa}}/homeworks/83d0bdf6-4011-42d9-b0d3-8adb389ef173"
+					},
+					"response": []
+				},
+				{
+					"name": "[Lisa] Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {",
+									"    pm.environment.set(\"token\", pm.response.json().token);",
+									"}catch(e){",
+									"    // do nothing",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"el_barto@gmail.com\",\n    \"password\": \"el_barto_password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host_lisa}}/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bart API",
+			"item": [
+				{
+					"name": "[Bart] Status Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_bart}}"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Status Check Lisa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_bart}}/get-lisa-status"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Get stolen homeworks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_bart}}/get-stolen-homeworks"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Get List homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_bart}}/homeworks/"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Get Single homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host_bart}}/homeworks/157187cc-b48d-42b3-88e7-45498da49dcf"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {",
+									"    pm.environment.set(\"token\", pm.response.json().token);",
+									"}catch(e){",
+									"    // do nothing",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"el_barto@gmail.com\",\n    \"password\": \"el_barto_password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host_bart}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Post homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"{{$randomJobTitle}}\",\n    \"description\": \"{{$randomJobDescriptor}}\",\n    \"dueDate\": \"{{$randomDateRecent}}\",\n    \"completed\": {{$randomBoolean}}\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host_bart}}/homeworks/"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Put homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Tema a scelta\",\n    \"dueDate\": \"2025-02-19T15:04:48.000Z\",\n    \"description\": \"International\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host_lisa}}/homeworks/96825c68-04e9-41fc-9f20-a5b5e2fcbce9"
+					},
+					"response": []
+				},
+				{
+					"name": "[Bart] Delete homework",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{host_bart}}/homeworks/4f26b2d4-5e95-41dc-ac85-21d9c0b6940f"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

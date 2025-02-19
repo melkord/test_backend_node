@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  lisa:
+    build:
+      context: ./lisa
+    volumes:
+      - ./lisa:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: postgres://lisa_db_user:lisa_db_password@lisa_db:5432/lisa_db
+    depends_on:
+      - lisa_db
+    ports:
+      - "3001:3000"
+    networks:
+      - app-network
+
+  bart:
+    build:
+      context: ./bart
+    volumes:
+      - ./bart:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: postgres://bart_db_user:bart_db_password@bart_db:5432/bart_db
+    depends_on:
+      - bart_db
+    ports:
+      - "3002:3000"
+    networks:
+      - app-network
+
+  lisa_db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: lisa_db
+      POSTGRES_USER: lisa_db_user
+      POSTGRES_PASSWORD: lisa_db_password
+    volumes:
+      - lisa-db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  bart_db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: bart_db
+      POSTGRES_USER: bart_db_user
+      POSTGRES_PASSWORD: bart_db_password
+    volumes:
+      - bart-db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  lisa-db-data:
+  bart-db-data:
+
+networks:
+  app-network:

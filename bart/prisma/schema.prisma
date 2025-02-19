@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model StolenHomework {
+  id      String  @id @default(uuid()) // UUID univoco
+  action  Action  // Enum "get" o "list"
+  data    Json    // Campo JSON per salvare qualsiasi oggetto
+  createdAt DateTime @default(now()) // Timestamp per registrare quando è stato creato
+}
+
+enum Action {
+  GET
+  LIST
+}
