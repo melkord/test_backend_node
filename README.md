@@ -48,7 +48,7 @@ La collection è configurata il più possibile:
 - se la login va a buon fine verrà salvato in una variabile d'ambiente il token ottenuto
 - nelle chiamate API che necessitano di token (POST, PUT e DELETE), il token viene preso dalla variabile d'ambiente e settato nell'header.
 - dove sono necessari payload o parametri sono già settati. Gli ID degli homework sono solo a scopo esemplificativo e vanno sostituiti con valori veritieri.
-- gi endpoint di `Lisa` e `Bart` sono settati nelle variabili d'ambiente, che si possono importare dal file `Fleequid_docker.postman_environment.json` presente nella cartella `postman`
+- gli endpoint di `Lisa` e `Bart` sono settati nelle variabili d'ambiente, che si possono importare dal file `Fleequid_docker.postman_environment.json` presente nella cartella `postman`
 
 ### Utenti
 Lanciando il setup del progetto vengono creati due utenti:
